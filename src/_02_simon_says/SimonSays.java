@@ -30,17 +30,21 @@ public class SimonSays extends KeyAdapter {
 
 	// Complete steps 1 - 7 before you test
 	// 1. Declare a JFrame variable
-
+JFrame frame = new JFrame();
 	public void run() {
 		// 2. Add the four images that match keyboard keys like this:
-		// images.put(KeyEvent.VK_UP, "up.jpg");
-
+		images.put(KeyEvent.VK_UP, "up.jpg");
+		images.put(KeyEvent.VK_UP, "down.jpg");
+		images.put(KeyEvent.VK_UP, "left.jpg");
+		images.put(KeyEvent.VK_UP, "right.jpg");
+		
+		JOptionPane.showMessageDialog(null, "Press the matching key when Simon says, otherwise, press a different key");
 		// 3. Use a JOptionPane to tell the user the rules: "Press the matching
 		// key when
 		// 'Simon says' otherwise press a different key"
 
 		// 4. Call the showImage method to show an image
-
+		showImage();
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -74,26 +78,36 @@ public class SimonSays extends KeyAdapter {
 
 	private void showImage() {
 		// 5. Initialize your frame to a new JFrame()
-
+		JFrame image = new JFrame();
+		image.setVisible(true);
 		// 6. Set the frame to visible
 
 		// 7. Uncomment the following line to add a random image to your frame
-		// frame.add(getNextRandomImage());
-
+		image.add(getNextRandomImage());
+		image.setTitle("Simone Says!");
 		// 8. Set the name of your frame
-
+		image.pack();
 		// 9. Pack the frame
-
+		image.setDefaultCloseOperation(image.EXIT_ON_CLOSE);
 		// 10. Set the defaultCloseOperation of your frame to
 		// JFrame.EXIT_ON_CLOSE
-
+		image.addKeyListener(this);
+		
 		// 11. Add a key listener to the frame
 
 		// 12. Create a new instance of Random
 
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-
+		Random ran = new Random();
+		int simon = ran.nextInt(1);
+		if(simon == 0) {
+			speak("Simon says press this key");
+		}
+		else {
+			speak("Press this key");
+		}
+		
 		// 14. Above, set the value of simonSays to true/false appropriately
 
 	}
