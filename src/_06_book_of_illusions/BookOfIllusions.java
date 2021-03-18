@@ -1,5 +1,7 @@
 package _06_book_of_illusions;
 
+import java.awt.Dimension;
+
 /*
  *    Copyright (c) The League of Amazing Programmers 2013-2019
  *    Level 1
@@ -11,15 +13,26 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
  
-/** We’re going to make a slideshow of cool optical illusions. When the user clicks on an illusion, a new one will be loaded. **/
+/** We’re going to make a slide show of cool optical illusions. When the user clicks on an illusion, a new one will be loaded. **/
 
 public class BookOfIllusions extends MouseAdapter {
 
 	// 1. Make a JFrame variable and initialize it using "new JFrame()"
-
+	JFrame frame= new JFrame();
+	JLabel label;
 	public void run() {
+		System.out.println("hi");
+		frame.setVisible(true);
+		frame.setPreferredSize(new Dimension(1000,550));
+		String one = "Illusion#1.jpg";
+	
+		label = loadImageFromComputer(one);
+		frame.add(label);
+		frame.pack();
+		frame.addMouseListener(this);
 		// 2. make the frame visible
 		// 3. set the size of the frame
 		// 4. find 2 images and save them to your project’s _06_book_of_illusions folder
@@ -32,6 +45,15 @@ public class BookOfIllusions extends MouseAdapter {
 	}
 
 	public void mousePressed(MouseEvent e) {
+		System.out.println("Clicked");
+		//frame.removeAll();
+		frame.remove(label);
+		JLabel labs;
+		String two = "colorillusion.jfif";
+		labs = loadImageFromComputer(two);
+		frame.add(labs);
+		frame.pack();
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		// 11. Print "clicked!" to the console when the mouse is pressed
 		// 12. remove everything from the frame that was added earlier
 		// 13. load a new image like before (this is more than one line of code)
@@ -49,6 +71,7 @@ public class BookOfIllusions extends MouseAdapter {
 		return new JLabel(icon);
 	}
 
+	
 }
 
 
